@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nouveau projet – ProjecHub</title>
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .back-button {
+      margin-bottom: 1.5rem;
+    }
+    .back-button a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(4px);
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .back-button a:hover {
+      background: rgba(255,255,255,0.3);
+      gap: 0.75rem;
+    }
+    .form-wrapper {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem 2rem 2.5rem;
+      box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25);
+    }
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 1.8rem;
+      color: #1e293b;
+      border-left: 5px solid #3498db;
+      padding-left: 1.2rem;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #0f172a;
+      font-size: 0.9rem;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 1rem;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.2s;
+      background: #fefefe;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: #3498db;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(52,152,219,0.2);
+    }
+    textarea {
+      resize: vertical;
+    }
+    .file-help {
+      font-size: 0.75rem;
+      color: #475569;
+      margin-top: 0.5rem;
+      line-height: 1.4;
+    }
+    .file-list {
+      margin-top: 1rem;
+      max-height: 240px;
+      overflow-y: auto;
+      background: #f8fafc;
+      border-radius: 1rem;
+      padding: 0.5rem;
+    }
+    .file-item {
+      background: white;
+      border-radius: 2rem;
+      padding: 0.6rem 1rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-size: 0.85rem;
+    }
+    .file-item span:first-child {
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .file-item span:first-child::before {
+      content: "📎";
+      font-size: 1rem;
+    }
+    .file-item small {
+      background: #e2e8f0;
+      padding: 0.2rem 0.8rem;
+      border-radius: 2rem;
+      font-family: monospace;
+      font-size: 0.75rem;
+    }
+    .form-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 2.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: #3498db;
+      color: white;
+      box-shadow: 0 4px 8px rgba(52,152,219,0.25);
+    }
+    .btn-primary:hover {
+      background: #2c6ea0;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(52,152,219,0.3);
+    }
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #1e293b;
+    }
+    .btn-secondary:hover {
+      background: #cbd5e1;
+      transform: translateY(-1px);
+    }
+    .status-message {
+      margin-top: 1.5rem;
+      padding: 0.9rem;
+      border-radius: 2rem;
+      text-align: center;
+      font-weight: 500;
+      display: none;
+    }
+    .status-message.loading {
+      display: block;
+      background: #dbeafe;
+      color: #1e40af;
+    }
+    .status-message.success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+    }
+    .status-message.error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+    @media (max-width: 600px) {
+      .form-wrapper { padding: 1.5rem; }
+      h1 { font-size: 1.6rem; }
+      .form-actions { flex-direction: column; }
+      .btn { text-align: center; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="back-button">
+    <a href="/">← Retour à l'accueil</a>
+  </div>
+  <div class="form-wrapper">
+    <h1> Nouveau projet créatif</h1>
+    <form id="projectForm" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="projectName">Nom du projet *</label>
+        <input type="text" id="projectName" name="projectName" required placeholder="ex: Portfolio 2025 – Refonte complète">
+      </div>
+      <div class="form-group">
+        <label for="projectDescription">Description (optionnelle)</label>
+        <textarea id="projectDescription" name="projectDescription" rows="3" placeholder="Quel est l'objectif de ce projet ?"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="category">Catégorie *</label>
+        <select id="category" name="category" required>
+          <option value="">-- Choisir une catégorie --</option>
+          <option value="web-design"> Design Web</option>
+          <option value="graphic-design"> Design Graphique</option>
+          <option value="video"> Vidéo / Motion</option>
+          <option value="software"> Développement logiciel</option>
+          <option value="general"> Général</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="projectAssets">Fichiers du projet</label>
+        <input type="file" id="projectAssets" name="projectAssets" multiple 
+               accept=".pdf,.doc,.docx,.zip,.rar,.gz,.mp4,.mov,.jpg,.jpeg,.png,.webp,.tiff,.tif">
+        <div class="file-help">
+           PDF, DOCX, ZIP, MP4, JPG, PNG, WebP, TIFF …<br>
+           500 Mo max par fichier – jusqu'à 20 fichiers
+        </div>
+        <div id="filePreview" class="file-list"></div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary"> Créer le projet</button>
+        <button type="reset" class="btn btn-secondary"> Réinitialiser</button>
+      </div>
+      <div id="statusMessage" class="status-message"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const form = document.getElementById('projectForm');
+    const fileInput = document.getElementById('projectAssets');
+    const previewDiv = document.getElementById('filePreview');
+    const statusMsg = document.getElementById('statusMessage');
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+      });
+    }
+
+    function updatePreview() {
+      const files = Array.from(fileInput.files);
+      if (files.length === 0) {
+        previewDiv.innerHTML = '';
+        return;
+      }
+      previewDiv.innerHTML = files.map(f => `
+        <div class="file-item">
+          <span>${escapeHtml(f.name)}</span>
+          <small>${(f.size / 1024 / 1024).toFixed(2)} Mo</small>
+        </div>
+      `).join('');
+    }
+
+    fileInput.addEventListener('change', updatePreview);
+
+    form.addEventListener('reset', function() {
+      setTimeout(() => {
+        previewDiv.innerHTML = '';
+        statusMsg.className = 'status-message';
+        statusMsg.textContent = '';
+        statusMsg.style.display = 'none';
+      }, 10);
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      statusMsg.className = 'status-message loading';
+      statusMsg.textContent = '⏳ Création en cours...';
+      statusMsg.style.display = 'block';
+      try {
+        const response = await fetch('/api/projects/create-with-assets', {
+          method: 'POST',
+          body: formData
+        });
+        const result = await response.json();
+        if (result.success) {
+          statusMsg.className = 'status-message success';
+          statusMsg.textContent = '✓ Projet créé avec succès ! Redirection...';
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 1500);
+        } else {
+          statusMsg.className = 'status-message error';
+          statusMsg.textContent = `✗ ${result.message || 'Erreur serveur'}`;
+        }
+      } catch (err) {
+        statusMsg.className = 'status-message error';
+        statusMsg.textContent = `✗ Erreur réseau : ${err.message}`;
+      }
+    });
+  })();
+</script>
+</body>
+</html>

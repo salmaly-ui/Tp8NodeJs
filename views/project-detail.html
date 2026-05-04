@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Détail du projet</title>
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-button">← Retour</a>
+    <div id="projectDetail" class="project-detail">
+      <p>Chargement...</p>
+    </div>
+  </div>
+  <script>
+    const projectId = window.location.pathname.split('/').pop();
+    fetch(`/api/projects/${projectId}`)
+      .then(res => res.json())
+      .then(data => {
+        if (!data.success) throw new Error(data.message);
+        const p = data.project;
+        document.getElementById('projectDetail').innerHTML = `
+          <h1>${p.name}</h1>
+          <p>${p.description || ''}</p>
+          <div class="meta">
+            <span class="category">${p.category}</span>
+            <span class="status">${p.status}</span>
+          </div>
+          <div class="assets-list">
+            <h3>Fichiers (${p.assets.length})</h3>
+            <ul>
+              ${p.assets.map(a => `<li><a href="/projects/${p.id}/${a.filename}" target="_blank">${a.originalName}</a> (${(a.size/1024/1024).toFixed(2)} MB)</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      })
+      .catch(err => {
+        document.getElementById('projectDetail').innerHTML = `<p class="error">Erreur : ${err.message}</p>`;
+      });
+  </script>
+  <style>
+    .back-button { display: inline-block; margin-bottom: 20px; color: #3498db; text-decoration: none; }
+    .project-detail { background: white; padding: 20px; border-radius: 8px; }
+    .assets-list ul { list-style: none; padding-left: 0; }
+    .assets-list li { padding: 8px; border-bottom: 1px solid #eee; }
+  </style>
+</body>
+</html>

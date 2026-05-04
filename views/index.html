@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProjecHub - Gestionnaire de Projets Créatifs</title>
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+  <div class="header">
+    <h1> ProjecHub</h1>
+    <p>Plateforme de gestion de projets et actifs créatifs</p>
+  </div>
+  
+  <div class="container">
+    <section class="quick-actions">
+      <a href="/create" class="btn btn-primary">+ Nouveau Projet</a>
+      <button class="btn btn-secondary" onclick="loadProjects()">Mes Projets</button>
+    </section>
+    
+    <section id="projectsList" class="projects-grid">
+      <p class="loading">Chargement des projets...</p>
+    </section>
+  </div>
+  
+  <script src="/js/uploader.js"></script>
+  <script>
+    async function loadProjects() {
+      try {
+        const response = await fetch('/api/projects/list');
+        const data = await response.json();
+        
+        const container = document.getElementById('projectsList');
+        
+        if (!data.success || data.projects.length === 0) {
+          container.innerHTML = '<p class="empty">Aucun projet trouvé. Créez votre premier projet!</p>';
+          return;
+        }
+        
+        container.innerHTML = data.projects.map(project => `
+          <div class="project-card">
+            <h3>${project.name}</h3>
+            <p>${project.description}</p>
+            <div class="meta">
+              <span class="category">${project.category}</span>
+              <span class="status">${project.status}</span>
+            </div>
+            <div class="assets-count">
+              ${project.assets.length} asset(s)
+            </div>
+            <a href="/project/${project.id}" class="view-btn">Voir détails</a>
+          </div>
+        `).join('');
+        
+      } catch (err) {
+        console.error('Erreur:', err);
+        document.getElementById('projectsList').innerHTML = 
+          '<p class="error">Erreur lors du chargement des projets</p>';
+      }
+    }
+    
+     loadProjects();
+  </script>
+</body>
+</html>

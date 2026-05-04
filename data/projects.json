@@ -1,0 +1,73 @@
+{
+  "projects": [
+    {
+      "id": "proj_41946417",
+      "name": "portfolio",
+      "description": "mon portfolio",
+      "category": "general",
+      "status": "draft",
+      "createdAt": "2026-05-04T15:39:39.861Z",
+      "updatedAt": "2026-05-04T15:39:39.861Z",
+      "assets": [
+        {
+          "id": "asset_423accf9",
+          "filename": "1777909179833_632643.jpg",
+          "originalName": "portfolio.jpg",
+          "mimeType": "image/jpeg",
+          "size": 180933,
+          "path": "storage\\projects\\proj_41946417\\1777909179833_632643.jpg",
+          "uploadedAt": "2026-05-04T15:39:39.859Z",
+          "version": 1
+        }
+      ],
+      "tags": [],
+      "collaborators": []
+    },
+    {
+      "id": "proj_66287d59",
+      "name": "Systeme de gestion des absences medicales des etudiants",
+      "description": "application web + mobile ",
+      "category": "software",
+      "status": "draft",
+      "createdAt": "2026-05-04T16:07:57.508Z",
+      "updatedAt": "2026-05-04T16:07:57.510Z",
+      "assets": [
+        {
+          "id": "asset_1f09bb3e",
+          "filename": "1777910877390_836589.png",
+          "originalName": "archi.png",
+          "mimeType": "image/png",
+          "size": 613052,
+          "path": "storage\\projects\\proj_66287d59\\1777910877390_836589.png",
+          "uploadedAt": "2026-05-04T16:07:57.500Z",
+          "version": 1
+        }
+      ],
+      "tags": [],
+      "collaborators": []
+    },
+    {
+      "id": "proj_1963e93e",
+      "name": "demo projet developpement mobile ",
+      "description": "demonstration video",
+      "category": "video",
+      "status": "draft",
+      "createdAt": "2026-05-04T16:08:57.588Z",
+      "updatedAt": "2026-05-04T16:08:57.588Z",
+      "assets": [
+        {
+          "id": "asset_59ba01ec",
+          "filename": "1777910934823_909535.mov",
+          "originalName": "demoSalma.mov",
+          "mimeType": "video/quicktime",
+          "size": 91105923,
+          "path": "storage\\projects\\proj_1963e93e\\1777910934823_909535.mov",
+          "uploadedAt": "2026-05-04T16:08:57.586Z",
+          "version": 1
+        }
+      ],
+      "tags": [],
+      "collaborators": []
+    }
+  ]
+}
