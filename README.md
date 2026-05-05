@@ -1,7 +1,14 @@
 ## ProjecHub - Gestion de projets & uploads (Node.js + Multer)
 
-
+---
 ## demo video
+
+
+
+https://github.com/user-attachments/assets/9c4595e7-94b0-40ba-95d8-e4a1253a8e4e
+
+---
+
 **Installation :** git clone <repo> -> npm install -> npm run dev -> http://localhost:3000
 
 **Stack :** Express.js | Multer | UUID | Moment.js | FileSystem natif
